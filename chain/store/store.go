@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"github.com/filecoin-project/specs-actors/actors/crypto"
-	"github.com/minio/blake2b-simd"
+	"golang.org/x/crypto/blake2b"
 
 	"github.com/filecoin-project/go-address"
 	"github.com/filecoin-project/specs-actors/actors/abi"
@@ -890,7 +890,10 @@ func (cs *ChainStore) TryFillTipSet(ts *types.TipSet) (*FullTipSet, error) {
 }
 
 func DrawRandomness(rbase []byte, pers crypto.DomainSeparationTag, round abi.ChainEpoch, entropy []byte) ([]byte, error) {
-	h := blake2b.New256()
+	h, err := blake2b.New256(nil)
+	if err == nil {
+		return nil, xerrors.Errorf("error creating new Hash: %w", err)
+	}
 	if err := binary.Write(h, binary.BigEndian, int64(pers)); err != nil {
 		return nil, xerrors.Errorf("deriving randomness: %w", err)
 	}

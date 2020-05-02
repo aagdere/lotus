@@ -2,7 +2,7 @@ package validation
 
 import (
 	"fmt"
-	"github.com/minio/blake2b-simd"
+	"golang.org/x/crypto/blake2b"
 	"math/rand"
 
 	"github.com/filecoin-project/go-address"

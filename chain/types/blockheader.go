@@ -2,7 +2,7 @@ package types
 
 import (
 	"bytes"
-	"github.com/minio/blake2b-simd"
+	"golang.org/x/crypto/blake2b"
 	"math/big"
 
 	"github.com/filecoin-project/specs-actors/actors/abi"
@@ -181,7 +181,7 @@ func CidArrsContains(a []cid.Cid, b cid.Cid) bool {
 
 var blocksPerEpoch = NewInt(build.BlocksPerEpoch)
 
-const sha256bits = 256
+const blake2bbits = 256
 
 func IsTicketWinner(vrfTicket []byte, mypow BigInt, totpow BigInt) bool {
 	/*
@@ -202,7 +202,7 @@ func IsTicketWinner(vrfTicket []byte, mypow BigInt, totpow BigInt) bool {
 
 	// rhs = sectorSize * 2^256
 	// rhs = sectorSize << 256
-	rhs := new(big.Int).Lsh(mypow.Int, sha256bits)
+	rhs := new(big.Int).Lsh(mypow.Int, blake2bbits)
 	rhs = rhs.Mul(rhs, blocksPerEpoch.Int)
 
 	// h(vrfout) * totalPower < e * sectorSize * 2^256?

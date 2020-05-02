@@ -10,8 +10,8 @@ import (
 	"github.com/filecoin-project/specs-actors/actors/abi"
 	"github.com/ipfs/go-cid"
 	logging "github.com/ipfs/go-log/v2"
-	"github.com/minio/blake2b-simd"
 	cbg "github.com/whyrusleeping/cbor-gen"
+	"golang.org/x/crypto/blake2b"
 	"golang.org/x/xerrors"
 )
 

@@ -6,7 +6,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"github.com/minio/blake2b-simd"
+	"golang.org/x/crypto/blake2b"
 	"io/ioutil"
 	"os"
 	"path/filepath"

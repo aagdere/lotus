@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"context"
 	"encoding/binary"
+	"golang.org/x/crypto/blake2b"
 	"time"
 
 	"github.com/filecoin-project/lotus/chain/types"
 	"github.com/filecoin-project/specs-actors/actors/abi"
-	"github.com/minio/blake2b-simd"
 	"golang.org/x/xerrors"
 )
 
